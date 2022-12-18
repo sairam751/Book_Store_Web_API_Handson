@@ -43,6 +43,8 @@ namespace BookStore.API
                 .AddEntityFrameworkStores<BookStoreContext>()
                 .AddDefaultTokenProviders();
 
+            // To add the JWT authentication in our application
+            //To get values from the appsettings.json we use configuration method
             services.AddAuthentication(option =>
             {
                 option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

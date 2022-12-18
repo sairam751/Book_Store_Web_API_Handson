@@ -49,13 +49,17 @@ namespace BookStore.API.Repository
                 return null;
             }
 
+            //Claims in application
             var authClaims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, signInModel.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
+            //To get the key
             var authSigninKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["JWT:Secret"]));
 
+
+            // To add settings required for token
             var token = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
                 audience: _configuration["JWT:ValidAudience"],
